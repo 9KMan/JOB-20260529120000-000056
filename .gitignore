@@ -1,0 +1,63 @@
+# Worker-internal files (must never be pushed)
+# These are in the job directory but should not be committed
+SPEC.txt
+TASK.txt
+pid
+role
+worker.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Node.js
+node_modules/
+.npm
+.yarn/
+.next/
+out/
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# PROPOSAL.md and COVER_LETTER.txt stay local only
+PROPOSAL.md
+COVER_LETTER.txt
+
+# MinIO / build artifacts
+*.minio*
+
+# secrets (should be in env, never committed)
+*.pem
+*.key
+credentials.json

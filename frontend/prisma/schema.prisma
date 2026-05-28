@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Entity {
+  id            String   @id @default(cuid())
+  externalId    String?  @unique  // ID from external source
+  source        String            // 'internal_mysql' | 'feed_a' | 'feed_b'
+  name          String
+  slug          String   @unique
+  summary       String?
+  description   String?
+  rawJson       Json?             // original raw record
+  entityType    String            // schema: Product | Place | Person | Organization
+  status        EntityStatus @default(PENDING)
+
+  attributes    EntityAttribute[]
+  relationsFrom EntityRelation[] @relation("from")
+  relationsTo   EntityRelation[] @relation("to")
+  dataQuality   DataQualityRecord?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum EntityStatus {
+  PENDING
+  VALIDATED
+  DUPLICATE_CANDIDATE
+  ARCHIVED
+}
+
+model EntityAttribute {
+  id        String  @id @default(cuid())
+  entityId  String
+  key       String           // 'price' | 'location' | 'rating'
+  value     String           // stored as string, typed on read
+  datatype  AttributeType
+  source    String
+  entity    Entity  @relation(fields: [entityId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+enum AttributeType {
+  STRING
+  NUMBER
+  BOOLEAN
+  DATE
+  URL
+  EMAIL
+}
+
+model EntityRelation {
+  id           String  @id @default(cuid())
+  fromId       String
+  toId         String
+  relationType String  // 'related' | 'sibling' | 'parent' | 'child'
+  from         Entity  @relation("from", fields: [fromId], references: [id])
+  to           Entity  @relation("to", fields: [toId], references: [id])
+  createdAt    DateTime @default(now())
+
+  @@unique([fromId, toId, relationType])
+}
+
+// Deduplication candidates via fuzzy matching
+model DuplicateCandidate {
+  id        String  @id @default(cuid())
+  entityAId String
+  entityBId String
+  score     Float              // 0.0 – 1.0
+  reason    String
+  resolved  Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Data quality scores per entity
+model DataQualityRecord {
+  id          String  @id @default(cuid())
+  entityId    String  @unique
+  freshness   Float   // 0.0 – 1.0  (days since last update)
+  completeness Float  // 0.0 – 1.0  (% fields populated)
+  consistency Float   // 0.0 – 1.0  (schema compliance)
+  overall     Float
+  entity      Entity  @relation(fields: [entityId], references: [id])
+  updatedAt   DateTime @updatedAt
+}
+
+// Background job / task tracking
+model BackgroundJob {
+  id         String  @id @default(cuid())
+  jobType    String  // 'ingest' | 'dedup' | 'quality' | 'export'
+  status     String  // 'queued' | 'running' | 'done' | 'failed'
+  payload    Json?
+  error      String?
+  startedAt  DateTime?
+  finishedAt DateTime?
+  createdAt  DateTime @default(now())
+}
