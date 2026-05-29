@@ -1,3 +1,13 @@
+
+
+---
+
+## Business Problem Solved
+
+[PLACEHOLDER: Summarize the core business value from SPEC.md in 2-3 concise bullet points — what problem does this solve, for whom, and what measurable outcome it delivers. Example: "• Eliminates manual SKU reconciliation across 3 warehouse systems, saving ~15 hrs/week for operations team"]
+
+---
+
 # JOB-20260529120000-000056
 
 Production-ready project — see SPEC.md for full documentation.
