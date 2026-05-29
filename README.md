@@ -7,6 +7,8 @@
 
 
 
+
+
 ---
 
 ## Business Problem Solved
@@ -19,6 +21,11 @@ This platform solves that by:
 • **Single source of truth** — PostgreSQL as the unified store means the frontend, API, and any future integrations all read from the same clean dataset.
 
 **Measurable outcome:** Data ingestion that previously took 2 days of manual work now runs continuously in the background; pages load in <200ms; search returns relevant results without false positives.
+
+---
+
+
+---
 
 ---
 
@@ -72,17 +79,6 @@ npm install
 
 
 ---
-
-## Business Problem Solved
-
-Businesses aggregating data from multiple sources (internal databases, external feeds, scraped content) face a common challenge: every source has different schemas, quality issues, and update frequencies. Building a reliable, queryable, SEO-friendly platform on top of this mess requires significant engineering effort and ongoing maintenance.
-
-This platform solves that by:
-• **Automating the ingest-normalize-deduplicate pipeline** — A Python ETL layer continuously pulls from MySQL + external sources, normalizes records, and resolves duplicates before they reach the frontend.
-• **Delivering fast, structured pages for SEO** — Next.js server-side rendering with JSON-LD/Schema.org markup means every record is both human-readable and machine-discoverable.
-• **Single source of truth** — PostgreSQL as the unified store means the frontend, API, and any future integrations all read from the same clean dataset.
-
-**Measurable outcome:** Data ingestion that previously took 2 days of manual work now runs continuously in the background; pages load in <200ms; search returns relevant results without false positives.
 
 ---
 
