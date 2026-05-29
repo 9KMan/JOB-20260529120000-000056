@@ -67,29 +67,7 @@ No user data in scope unless the internal MySQL system contains personal data. I
 5. **MySQL access** — do I get a read-only dump/backup to work with for the discovery phase, or do I get direct (read-only) credentials to query the live system?
 6. **Deployment environment** — are Vercel (frontend) + Railway (FastAPI/ETL) the target environments, or are we working within an existing AWS/GCP account?
 
-🎁 Included with this proposal:
-✅ Public PoC repo with working code + architecture spec
-✅ Async-first communication: clear updates via chat/email, no meeting overhead
-✅ 30 days of post-delivery support for questions and minor adjustments
 
-If this aligns with your needs, I can expand the PoC to full production delivery within the timeline above. Happy to answer any questions or share additional architecture diagrams.
-
-Best regards,
-Mongkolpoj Phanutaecha
-Principal Data Platform Architect | AI-Augmented Engineering Factory
-Bangkok, Thailand (GMT+7) | Open to Remote Contracts
-
-🎁 Included with this proposal:
-✅ Public PoC repo with working code + architecture spec
-✅ Async-first communication: clear updates via chat/email, no meeting overhead
-✅ 30 days of post-delivery support for questions and minor adjustments
-
-If this aligns with your needs, I can expand the PoC to full production delivery within the timeline above. Happy to answer any questions or share additional architecture diagrams.
-
-Best regards,
-Mongkolpoj Phanutaecha
-Principal Data Platform Architect | AI-Augmented Engineering Factory
-Bangkok, Thailand (GMT+7) | Open to Remote Contracts
 
 🎁 Included with this proposal:
 ✅ Public PoC repo with working code + architecture spec
